@@ -1,26 +1,22 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'model_class.dart';
 
-abstract class ApiService extends ChangeNotifier{
-  Future<List<UniversityModel>> fetchProducts();
+
+abstract class ApiServiceInterface {
+  Future<List<Post>> getPosts();
 }
 
-class MyAwesomeApi extends ApiService with DioMixin implements ChangeNotifier{
-  late Dio _dio;
-
-  MyAwesomeApi(this._dio);
+class ApiService implements ApiServiceInterface {
+  final Dio dio = Dio();
 
   @override
-  Future<List<UniversityModel>> fetchProducts() async {
+  Future<List<Post>> getPosts() async {
     try {
-      final response = await _dio.get('http://universities.hipolabs.com/search?country=United+States');
-      return List<UniversityModel>.from(
-          response.data.map((json) => UniversityModel.fromJson(json)));
-    } catch (error) {
-      // Handle error gracefully and return empty list or throw
-      return [];
+      final response = await dio.get('http://universities.hipolabs.com/search?country=United+States');
+      final data = response.data as List<dynamic>;
+      return data.map((json) => Post.fromJson(json)).toList();
+    } catch (e) {
+      throw Exception('Failed to fetch posts: $e');
     }
   }
 }

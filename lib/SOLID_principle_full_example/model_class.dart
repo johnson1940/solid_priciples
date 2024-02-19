@@ -1,11 +1,11 @@
-class UniversityModel {
+class Post {
   final String name;
   final String country;
   final List webPage;
 
-  UniversityModel({required this.name, required this.country, required this.webPage});
+  Post({required this.name, required this.country, required this.webPage});
 
-  factory UniversityModel.fromJson(Map<String, dynamic> json) => UniversityModel(
+  factory Post.fromJson(Map<String, dynamic> json) => Post(
     name: json['name'] as String,
     country: json['country'] as String,
     webPage: json['web_pages'],

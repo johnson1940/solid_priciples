@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -8,10 +7,10 @@ class WebViewScreen extends StatefulWidget {
   const WebViewScreen({Key? key, required this.url}) : super(key: key);
 
   @override
-  _WebViewScreenState createState() => _WebViewScreenState();
+  WebViewScreenState createState() => WebViewScreenState();
 }
 
-class _WebViewScreenState extends State<WebViewScreen> {
+class WebViewScreenState extends State<WebViewScreen> {
 
   late WebViewController controller;
 
